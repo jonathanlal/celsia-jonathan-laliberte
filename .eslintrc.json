@@ -1,3 +1,69 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "plugin:@next/next/recommended",
+    "plugin:react/recommended",
+    "plugin:import/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@babel/eslint-parser",
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "endOfLine": "auto"
+      }
+    ],
+    "@next/next/no-document-import-in-page": "off",
+    "import/no-named-as-default": 0,
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": 0,
+    "react/jsx-props-no-spreading": "off",
+    "editorconfig/charset": "error",
+    "editorconfig/eol-last": "error",
+    "editorconfig/indent": 0,
+    "editorconfig/linebreak-style": 0,
+    "editorconfig/no-trailing-spaces": "error",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        }
+      }
+    ],
+    "jsx-a11y/label-has-for": [
+      "error",
+      {
+        "required": {
+          "some": [
+            "nesting",
+            "id"
+          ]
+        }
+      }
+    ]
+  },
+
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "."
+        ]
+      }
+    },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "jsx-a11y",
+    "editorconfig",
+    "prettier"
+  ]
 }
