@@ -32,6 +32,8 @@ export const StyledCard = styled.article`
     font-size: 1.2em;
     font-weight: normal;
     margin: 0;
+    line-height: 30px;
+    padding: 10px;
   }
 `;
 
