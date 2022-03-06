@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { shimmerEffect } from 'lib';
 
 export const StyledCard = styled.article`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -47,7 +48,13 @@ export function Card({ title, selectSector, selectedSectors }) {
       }
       onClick={() => selectSector(title)}
     >
-      <Image src={`/industries/${title}.jpg`} alt={title} layout="fill" />
+      <Image
+        src={`/industries/${title}.jpg`}
+        alt={title}
+        layout="fill"
+        placeholder="blur"
+        blurDataURL={`${shimmerEffect()}`}
+      />
       <section>
         <div>{title}</div>
       </section>
