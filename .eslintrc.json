@@ -12,7 +12,8 @@
       "error",
       {
         "singleQuote": true,
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "trailingComma" : "none"
       }
     ],
     "@next/next/no-document-import-in-page": "off",
