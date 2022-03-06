@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { shimmerEffect } from 'lib/ImageEffect';
 
 const StyledListItem = styled.article`
   display: grid;
@@ -45,7 +46,13 @@ export function ListItem({ title, selectSector, selectedSectors }) {
       }
       onClick={() => selectSector(title)}
     >
-      <Image src={`/industries/${title}.jpg`} alt={title} layout="fill" />
+      <Image
+        src={`/industries/${title}.jpg`}
+        alt={title}
+        layout="fill"
+        placeholder="blur"
+        blurDataURL={`${shimmerEffect()}`}
+      />
       <p>{title}</p>
     </StyledListItem>
   );
