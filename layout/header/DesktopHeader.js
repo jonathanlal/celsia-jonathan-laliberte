@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Logo, Switch } from 'components';
+import { Logo, ThemeSwitch } from 'components';
 import useDarkMode from 'use-dark-mode';
 
 export const StyledHeaderWrapper = styled.header`
@@ -21,7 +21,10 @@ export function DesktopHeader() {
   return (
     <StyledHeaderWrapper>
       <Logo />
-      <Switch checked={darkMode.value} onChange={() => darkMode.toggle()} />
+      <ThemeSwitch
+        checked={darkMode.value}
+        onChange={() => darkMode.toggle()}
+      />
     </StyledHeaderWrapper>
   );
 }

@@ -1,4 +1,4 @@
-import { Logo, Switch } from 'components';
+import { Logo, ThemeSwitch } from 'components';
 import useDarkMode from 'use-dark-mode';
 import styled from 'styled-components';
 
@@ -13,10 +13,6 @@ export const StyledHeaderMobileWrapper = styled.header`
   height: 5rem;
   padding: 0 30px;
   box-shadow: var(--bs);
-
-  svg {
-    font-size: 2.5rem;
-  }
 `;
 
 export function MobileHeader() {
@@ -25,7 +21,10 @@ export function MobileHeader() {
   return (
     <StyledHeaderMobileWrapper>
       <Logo />
-      <Switch checked={darkMode.value} onChange={() => darkMode.toggle()} />
+      <ThemeSwitch
+        checked={darkMode.value}
+        onChange={() => darkMode.toggle()}
+      />
     </StyledHeaderMobileWrapper>
   );
 }
