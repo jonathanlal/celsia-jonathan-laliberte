@@ -9,14 +9,30 @@ export default function Activities() {
     'selected-activities'
   );
   const [somethingChecked, setSomethingChecked] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(async () => {
-    const response = await fetch('/api/activities', {
+  useEffect(() => {
+    fetch('/api/activities', {
       method: 'POST',
       body: JSON.stringify(Object.keys(selectedActivities))
-    });
-    const data = await response.json();
-    setData(data);
+    })
+      .then((data) => {
+        console.log(data);
+        if (!data.ok) {
+          return Promise.reject(data);
+        }
+        return data.json();
+      })
+      .then((data) => {
+        setData(data);
+      })
+      .catch(() => {
+        setHasError(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, [setData]);
 
   function setActivity(activity, sector) {
@@ -35,24 +51,27 @@ export default function Activities() {
       <NavLink title="Back" url="/" />
       <StyledH1>Select your company activities:</StyledH1>
       {somethingChecked && <Alert url="/profile" title="Go to summary" />}
-      {data &&
+      {!hasError &&
+        !isLoading &&
         Object.keys(data).map((sector) => (
           <>
             <StyledH3 key={sector}>{sector}</StyledH3>
-            {data[sector].map((activity) => (
-              <Accordion
-                key={activity.name}
-                title={activity.name}
-                description={activity.description}
-                setActivity={setActivity}
-                sector={sector}
-                selectedActivities={selectedActivities}
-                setSomethingChecked={setSomethingChecked}
-              />
-            ))}
+            {data &&
+              data[sector].map((activity) => (
+                <Accordion
+                  key={activity.name}
+                  title={activity.name}
+                  description={activity.description}
+                  setActivity={setActivity}
+                  sector={sector}
+                  selectedActivities={selectedActivities}
+                  setSomethingChecked={setSomethingChecked}
+                />
+              ))}
           </>
         ))}
-      {!data && <p>loading...</p>}
+      {isLoading && <p>Loading...</p>}
+      {hasError && <p>Error!</p>}
     </Container>
   );
 }
