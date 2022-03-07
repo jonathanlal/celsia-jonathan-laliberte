@@ -52,6 +52,7 @@ export default function Activities() {
             ))}
           </>
         ))}
+      {!data && <p>loading...</p>}
     </Container>
   );
 }

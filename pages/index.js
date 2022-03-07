@@ -28,11 +28,10 @@ export default function Home({ data }) {
   function setSector(sector) {
     if (selectedActivities.hasOwnProperty(sector)) {
       delete selectedActivities[sector];
-      setSelectedActivities(selectedActivities);
     } else {
       selectedActivities[sector] = [];
-      setSelectedActivities(selectedActivities);
     }
+    setSelectedActivities(selectedActivities);
   }
   function selectSector(sector) {
     if (!selectedSectors.includes(sector)) {
